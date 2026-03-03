@@ -180,6 +180,28 @@ func getRemainingCourses(from courses: [Course], for date: Date) -> [Course] {
     return []
 }
 
+func getCurrentCourse(from courses: [Course], for date: Date) -> Course? {
+    let currentWeekday = Calendar.current.component(.weekday, from: date)
+    let currentWeek = getCurrentWeek(for: date)
+    let currentHour = Calendar.current.component(.hour, from: date)
+    let currentMinute = Calendar.current.component(.minute, from: date)
+    let currentMins = totalMinutes(hour: currentHour, minute: currentMinute)
+    
+    let todayCourses = courses.filter {
+        $0.weekday == currentWeekday &&
+        $0.validWeeks.contains(currentWeek) &&
+        totalMinutes(hour: $0.startHour, minute: $0.startMinute) <= currentMins &&
+        totalMinutes(hour: $0.startHour, minute: $0.startMinute) + 110 > currentMins
+    }
+   
+    
+  
+    return todayCourses.first
+   
+    
+   
+}
+
 // MARK: - Views
 
 struct CourseRowView: View {
@@ -251,7 +273,7 @@ struct AllScheduleWidgetEntryView : View {
                                                         .minimumScaleFactor(0.8)
                                                     if family == .systemLarge {
                                                         Text(course.location)
-                                                            .font(.system(size: 10))
+                                                            .font(.system(size: 11))
                                                             .foregroundColor(.secondary)
                                                             .lineLimit(2)
                                                     }
@@ -280,7 +302,7 @@ struct AllScheduleWidgetEntryView : View {
                                                     Text(endStr)
                                                 }
                                                 .font(.system(size: family == .systemLarge ? 13 : 9, weight: .semibold))
-                                                .foregroundColor(.green.opacity(0.6))
+                                                .foregroundColor(.green.opacity(0.7))
                                                 .padding(1)
                                                 .frame(width: geo.size.width, height: height)
                                                 .background(Color.green.opacity(0.15))
@@ -436,7 +458,7 @@ struct NextClassWidgetEntryView : View {
     }
 }
 
-struct RemainClassWidgetEntryView : View {
+struct RemainClassWidgetEntryView2 : View {
     var entry: ScheduleProvider.Entry
     @Environment(\.widgetFamily) var family
 
@@ -464,7 +486,7 @@ struct RemainClassWidgetEntryView : View {
                  //   let limit = 3
                     let displayCourses = remaining
                     
-                    Spacer()
+                    Spacer(minLength: 0)
                     ForEach(displayCourses) { course in
                         CourseRowView(course: course,isCompact: true, isVeryCompact: useVeryCompact)
                         if course.id != displayCourses.last?.id {
@@ -481,15 +503,82 @@ struct RemainClassWidgetEntryView : View {
                     let useVeryCompact = isConstrainedHeight && remaining.count > 3
                     let useCompact = isConstrainedHeight || remaining.count > 4
                     let displayCourses = remaining
-                    Spacer()
+                   Spacer(minLength: 0)
                     ForEach(displayCourses) { course in
                         CourseRowView(course: course, isCompact: useCompact,isVeryCompact: useVeryCompact)
                         if course.id != displayCourses.last?.id {
-                            Divider()
+                            Divider().padding(.vertical, useVeryCompact ? -4 : (useCompact ? -2 : 0))
                         }
+                      
                     }
                     Spacer(minLength: 0)
                 }
+            }
+        }
+    }
+}
+
+struct RemainClassWidgetEntryView : View {
+    var entry: ScheduleProvider.Entry
+    @Environment(\.widgetFamily) var family
+
+    var body: some View {
+        let todaysCourses = getRemainingCourses(from: entry.courses, for: entry.date)
+        let isConstrainedHeight = family == .systemSmall || family == .systemMedium
+        let useVeryCompact = isConstrainedHeight && todaysCourses.count > 3
+        let useCompact = isConstrainedHeight || todaysCourses.count > 4
+        
+        VStack(alignment: .leading, spacing: useVeryCompact ? 2 : 4) {
+            HStack {
+                Text(family == .systemSmall ? "Remain" : "Remaining Classes")
+                    .font(family == .systemSmall ? .caption : .subheadline)
+                    .foregroundColor(.secondary)
+                Spacer()
+              
+                
+               
+            }
+            .padding(.bottom, 2)
+            
+            if todaysCourses.isEmpty {
+                Spacer()
+                Text("No upcoming classes.")
+                    .font(.caption)
+                    .foregroundColor(.secondary)
+                    .frame(maxWidth: .infinity, alignment: .center)
+                Spacer()
+            } else if family == .systemMedium && todaysCourses.count > 3 {
+                LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], alignment: .leading, spacing: 6) {
+                    ForEach(todaysCourses) { course in
+                        VStack(alignment: .leading, spacing: 2) {
+                            Text(course.name)
+                                .font(.system(size: 12, weight: .bold))
+                                .lineLimit(1)
+                            Text(course.location)
+                                .font(.system(size: 10))
+                                .foregroundColor(.secondary)
+                                .lineLimit(1)
+                            Text(course.time)
+                                .font(.system(size: 10, weight: .bold))
+                                .foregroundColor(.blue)
+                                .lineLimit(1)
+                                .minimumScaleFactor(0.8)
+                        }
+                        .padding(6)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .background(Color.blue.opacity(0.1))
+                        .cornerRadius(6)
+                    }
+                }
+                Spacer(minLength: 0)
+            } else {
+                ForEach(todaysCourses) { course in
+                    CourseRowView(course: course, isCompact: useCompact, isVeryCompact: useVeryCompact)
+                    if course.id != todaysCourses.last?.id {
+                        Divider().padding(.vertical, useVeryCompact ? -4 : (useCompact ? -2 : 0))
+                    }
+                }
+                Spacer(minLength: 0)
             }
         }
     }
