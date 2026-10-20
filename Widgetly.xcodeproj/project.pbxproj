@@ -67,6 +67,11 @@
 			path = ScheduleWidget;
 			sourceTree = "<group>";
 		};
+		C83435702F55ABF800E5EC69 /* Shared */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Shared;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +99,7 @@
 			children = (
 				C83435402F55A9EA00E5EC69 /* Widgetly */,
 				C83435562F55ABF800E5EC69 /* ScheduleWidget */,
+				C83435702F55ABF800E5EC69 /* Shared */,
 				C83435512F55ABF800E5EC69 /* Frameworks */,
 				C834353F2F55A9EA00E5EC69 /* Products */,
 			);
@@ -136,6 +142,7 @@
 			);
 			fileSystemSynchronizedGroups = (
 				C83435402F55A9EA00E5EC69 /* Widgetly */,
+				C83435702F55ABF800E5EC69 /* Shared */,
 			);
 			name = Widgetly;
 			packageProductDependencies = (
@@ -158,6 +165,7 @@
 			);
 			fileSystemSynchronizedGroups = (
 				C83435562F55ABF800E5EC69 /* ScheduleWidget */,
+				C83435702F55ABF800E5EC69 /* Shared */,
 			);
 			name = ScheduleWidgetExtension;
 			packageProductDependencies = (
@@ -178,9 +186,15 @@
 				TargetAttributes = {
 					C834353D2F55A9EA00E5EC69 = {
 						CreatedOnToolsVersion = 26.2;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = { enabled = 1; };
+						};
 					};
 					C834354F2F55ABF800E5EC69 = {
 						CreatedOnToolsVersion = 26.2;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = { enabled = 1; };
+						};
 					};
 				};
 			};
@@ -376,8 +390,11 @@
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
+				CODE_SIGN_ENTITLEMENTS = AppConfig/Widgetly.entitlements;
+				INFOPLIST_FILE = AppConfig/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Widgetly;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_NSCalendarsUsageDescription = "";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -422,8 +439,11 @@
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
+				CODE_SIGN_ENTITLEMENTS = AppConfig/Widgetly.entitlements;
+				INFOPLIST_FILE = AppConfig/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Widgetly;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_NSCalendarsUsageDescription = "";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -461,6 +481,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_ENTITLEMENTS = AppConfig/ScheduleWidget.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = BM65LT28P4;
 				ENABLE_APP_SANDBOX = YES;
@@ -503,6 +524,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_ENTITLEMENTS = AppConfig/ScheduleWidget.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = BM65LT28P4;
 				ENABLE_APP_SANDBOX = YES;

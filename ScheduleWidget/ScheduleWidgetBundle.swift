@@ -15,5 +15,6 @@ struct ScheduleWidgetBundle: WidgetBundle {
         TodayScheduleWidget()
         NextClassWidget()
         RemainClassWidget()
+        TimerWidget()
     }
 }

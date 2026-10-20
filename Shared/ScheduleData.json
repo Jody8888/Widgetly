@@ -1,0 +1,67 @@
+{
+  "semesterStartDate": "2026-09-14",
+  "totalWeeks": 16,
+  "scheduleSelection": {
+    "mode": "seasonal",
+    "summerScheduleID": "summer",
+    "winterScheduleID": "winter",
+    "winterStartsOn": null,
+    "summerStartsOn": null,
+    "customScheduleID": "custom",
+    "fallbackScheduleID": "summer"
+  },
+  "schedules": [
+    {
+      "id": "summer",
+      "name": "夏季作息",
+      "periods": [
+        { "id": 0, "start": "08:00", "end": "09:50" },
+        { "id": 1, "start": "10:10", "end": "12:00" },
+        { "id": 2, "start": "14:30", "end": "16:20" },
+        { "id": 3, "start": "16:40", "end": "18:30" },
+        { "id": 4, "start": "19:40", "end": "21:30" }
+      ]
+    },
+    {
+      "id": "winter",
+      "name": "冬季作息",
+      "periods": [
+        { "id": 0, "start": "08:00", "end": "09:50" },
+        { "id": 1, "start": "10:10", "end": "12:00" },
+        { "id": 2, "start": "14:00", "end": "15:50" },
+        { "id": 3, "start": "16:10", "end": "18:00" },
+        { "id": 4, "start": "19:10", "end": "21:00" }
+      ]
+    },
+    {
+      "id": "custom",
+      "name": "自定义作息",
+      "periods": [
+        { "id": 0, "start": "08:00", "end": "09:50" },
+        { "id": 1, "start": "10:10", "end": "12:00" },
+        { "id": 2, "start": "14:30", "end": "16:20" },
+        { "id": 3, "start": "16:40", "end": "18:30" },
+        { "id": 4, "start": "19:40", "end": "21:30" }
+      ]
+    }
+  ],
+  "courses": [
+    { "id": "mon-discrete", "name": "离散数学A", "location": "主楼B-204", "weekday": 2, "periodID": 0, "validWeeks": [1,2,3,5,6,7,8,9,10,11,12,13,14,15,16] },
+    { "id": "mon-quantum", "name": "量子力学与统计物理", "location": "中2-1207", "weekday": 2, "periodID": 1, "validWeeks": [1,2,3,5,6,7,8,9,10,11,12,13,14,15,16] },
+    { "id": "mon-physics-lab", "name": "大学物理实验I-2", "location": "仲英楼-B320", "weekday": 2, "periodID": 2, "validWeeks": [2,3,5,6,7,8,9,10,11,12,13,14,15,16] },
+    { "id": "mon-sport", "name": "体育-3", "location": "体育中心--北侧羽毛球场", "weekday": 2, "periodID": 3, "validWeeks": [1,2,3,5,6,7,8,9,10,11,12,13,14,15,16] },
+    { "id": "mon-circuit", "name": "电路", "location": "主楼D-205", "weekday": 2, "periodID": 4, "validWeeks": [1,2,3,5,6,7,8,9,10,11,12,13,14,15,16] },
+    { "id": "tue-physics", "name": "大学物理II-2", "location": "中2-3221", "weekday": 3, "periodID": 0, "validWeeks": [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16] },
+    { "id": "tue-probability", "name": "概率论与数理统计", "location": "主楼B-404", "weekday": 3, "periodID": 1, "validWeeks": [1,2,3,4,5,6,7,8,9,10,11,12] },
+    { "id": "tue-english", "name": "新闻英语阅读", "location": "外文楼A-602", "weekday": 3, "periodID": 2, "validWeeks": [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16] },
+    { "id": "tue-data-structures", "name": "数据结构与算法I", "location": "西2东-342", "weekday": 3, "periodID": 3, "validWeeks": [1,2,3,4,5,6,7,8,9,10,11,12,13,14] },
+    { "id": "tue-physics-evening", "name": "大学物理II-2", "location": "未安排地点", "weekday": 3, "periodID": 4, "validWeeks": [4,8,12,16] },
+    { "id": "wed-quantum", "name": "量子力学与统计物理", "location": "中2-1207", "weekday": 4, "periodID": 1, "validWeeks": [5,6,7,8,9,10,11,12,13,14,15,16] },
+    { "id": "wed-politics", "name": "毛泽东思想和中国特色社会主义理论体系概论", "location": "主楼B-204", "weekday": 4, "periodID": 3, "validWeeks": [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16] },
+    { "id": "thu-discrete", "name": "离散数学A", "location": "主楼B-204", "weekday": 5, "periodID": 0, "validWeeks": [1,2,4,5,6,7,8,9,10,11,12,13,14,15,16] },
+    { "id": "thu-circuit", "name": "电路", "location": "主楼D-205", "weekday": 5, "periodID": 1, "validWeeks": [1,2,4,5,6,7,8,9,10,11,12,13,14,15,16] },
+    { "id": "thu-physics", "name": "大学物理II-2", "location": "中2-3221", "weekday": 5, "periodID": 2, "validWeeks": [1,2,4,5,6,7,8,9,10,11,12,13,14,15,16] },
+    { "id": "thu-probability", "name": "概率论与数理统计", "location": "主楼B-404", "weekday": 5, "periodID": 3, "validWeeks": [1,2,4,5,6,7,8,9,10,11,12] },
+    { "id": "fri-data-structures", "name": "数据结构与算法I", "location": "西2东-342", "weekday": 6, "periodID": 2, "validWeeks": [1,4,5,6,7,8,9,10,11,12,13,14] }
+  ]
+}
